@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- flatpickr -->
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- カレンダー付き表示用のプラグイン -->
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>トイレットペーパ管理</title>
+</head>
+<body>
+    <h2>トイレットペーパーの残量</h2>
+    <p id="cm"></p>
+    <button id = "reset_button">トイペ追加</button>
+    <p id="alert"></p>
+
+    <h2>最近の使用</h2>
+    <ul id="latest-using"></ul>
+
+    <h2>月ごとの使用量</h2>
+
+    <input id = "year_input" type="text" placeholder="年を入力(例: 2026)">
+    
+    <canvas id="year_graph"></canvas>
+
+    <h2>日付ごとの使用量</h2>
+
+    <input id="month_calendar" type="text" placeholder="月を選択">
+
+    <canvas id="month_graph"></canvas>
+
+
+    <script>
+        // 月選択
+        flatpickr("#month_calendar", {
+            locale: "ja",
+
+            plugins: [
+                new monthSelectPlugin({
+                    shorthand: true,
+                    dateFormat: "Y-m",
+                    altFormat: "F Y"
+                })
+            ]
+        });
+
+        // 日付選択
+        flatpickr("#daily_calendar", {
+            locale: "ja",
+            dateFormat: "Y-m-d"
+        });
+    </script>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
